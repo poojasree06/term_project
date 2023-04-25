@@ -257,6 +257,27 @@ router.post("/post_order/:user_id",(req,res)=>{
     });
 })
 
+
+router.patch("/update_order/:user_id",(req,res)=>{
+    const data=req.body
+    Order.findOne({_id:data.order_id})
+    .then((response) => {
+
+      response.coupon_code=data.coupon_code
+      response.discount=data.discount
+      response.save()
+      .then((order) => {
+              console.log("saved")
+              res.status(200).json(order)
+       }).catch((err) => {
+        console.error(err);
+    });
+
+    }).catch((err) => {
+        console.error(err);
+    });
+})
+
 router.get("/order_by_id/:order_id",(req, res) => {
 // console.log(req.params.order_id)
   Order.findOne({_id:req.params.order_id})   
@@ -283,9 +304,11 @@ router.get("/order_details/:order_id",(req, res) => {
             order_id:response._id,
             order_date:response.ordered_at,
             quantity:response.quantity,
-            status:response.status
+            status:response.status,
+            discount:response.discount,
+            coupon_code:response.coupon_code
           }
-          console.log(data)
+          // console.log(data)
           res.status(200).json(data)
       })
       
@@ -553,7 +576,7 @@ router.post("/post_account", (req, res) => {
 
 router.post('/payments', (req, res) => {
     const data = req.body;
-    console.log("payments")
+    console.log("payments  started")
     Customer.findOne({ _id: data.customer_id })
         .then((customer) => {
           console.log(customer.bank_accounts)
@@ -561,16 +584,23 @@ router.post('/payments', (req, res) => {
                 return acc.account_number === data.account_number && acc.bank === data.bank;
             });
             if (account) {
-                if (account.balance >= data.amount) {
-                    account.balance -= data.amount;
+              if(data.discount){
+                const amount=parseFloat(data.amount)-parseFloat(data.amount)*(parseFloat(data.discount)/100)
+                console.log(amount)
+              }
+                const amount=data.amount
+                if (account.balance >= amount) {
+                    account.balance -= amount;
                     customer.save()
                         .then(() => {
+                          console.log(data.item_id)
                             Item.findOne({_id:data.item_id})
                             .then((item)=>{
                               item.sold_quantity+=data.quantity
                               item.save()
                               .then((saved)=>{
                                 console.log("saved");
+                                console.log(saved)
                                 res.status(200).send('Payment successful and items updated');
                               })
                             })
@@ -579,6 +609,7 @@ router.post('/payments', (req, res) => {
                             console.log(err);
                             res.status(500).send('Error saving to database');
                         });
+                        //  res.status(200).send('Payment successful and items updated');
                 } else {
                     res.status(400).send('Insufficient funds');
                 }
@@ -612,6 +643,17 @@ router.get("/get_coupons/:user_id",(req,res)=>{
         console.error(err);
     });
 })
+
+router.get("/get_coupons",(req,res)=>{
+    Coupon.find()
+    .then((response) => {
+      console.log(`${response}`);
+      res.status(200).json(response)
+    }).catch((err) => {
+        console.error(err);
+    });
+})
+
 
 
 router.get("/coupon_by_id/:coupon_id",(req,res)=>{

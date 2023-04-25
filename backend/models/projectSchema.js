@@ -6,8 +6,6 @@ const bankSchema = new mongoose.Schema({
   accounts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Account'}]
 });
 
-
-
 const AccountSchema = new Schema({
   account_number: {type: String,required: true},
   phone: { type: String, required:true},
@@ -34,7 +32,9 @@ const OrderSchema=new Schema({
     bill:{type:String,required:true},
     ordered_at:{type:Date,default:Date.now},
     otp:{type:String,required:true},
-    status:{type:String,required:true,default:"ordered"} 
+    status:{type:String,required:true,default:"ordered"} ,
+    coupon_code:{type:String},
+    discount:{type:String}
 })
 
 const CustomerSchema=new Schema({

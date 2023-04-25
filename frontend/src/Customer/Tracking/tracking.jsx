@@ -46,12 +46,36 @@ export default function OrderTracking(props){
                     <div class="col-3">
                         <span id="price">{iteminfo.quantity}</span>
                     </div>
+                    <div class="col-9">
+                        <span id="name">Total Amount</span>  
+                    </div>
+                    <div class="col-3">
+                        <span id="price">${iteminfo.bill}</span>
+                    </div>
+                    {iteminfo.discount ? 
+                    <div>
+                        <div class="col-9">
+                            <span id="name">Total Amount</span>  
+                        </div>
+                        <div class="col-3">
+                            <span id="price">${iteminfo.bill}</span>
+                        </div>
+                        <div class="col-9">
+                            <span id="name">Discounted Amount</span>  
+                        </div>
+                        <div class="col-3">
+                            <span id="price">${(parseFloat(iteminfo.discount)*parseFloat(iteminfo.bill))/100}</span>
+                        </div>
+                    </div>:null
+
+                    }
+
                 </div>
             </div>
             <div class="order-total">
                 <div class="row">
                     <div class="col-9">Total bill</div>
-                    <div class="col-3"><big>&pound;{iteminfo.bill}</big></div>
+                    <div class="col-3"><big>&pound;{parseFloat(iteminfo.bill)-(parseFloat(iteminfo.discount)*parseFloat(iteminfo.bill))/100}</big></div>
                 </div>
             </div>
             <div class="order-tracking">
@@ -67,6 +91,6 @@ export default function OrderTracking(props){
             </div>
         </div>
          </div>
-</div>
+    </div>
     );
 }

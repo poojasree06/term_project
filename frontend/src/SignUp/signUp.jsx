@@ -93,11 +93,19 @@ export default function Register(props){
                      <input type="password" placeholder="Password" name="password" value={formData.password} 
               onChange={handleChange} required/>
                   </div>
+                  {type=="advertiser"?
+                  <div>
+                    <div class="field">
+                        <input type="text" placeholder="Account Number" name="account" value={formData.account_number} 
+                        onChange={handleChange} required/>
+                    </div>
+                  </div>:null
+                  }
                   <div class="field btn-login">
                      <div class="btn-layer"></div>
                      <input type={"submit"} value="Signup"/>
                   </div>
-                <div class="signup-link">
+                  <div class="signup-link">
                      Already have an account? <Link to={"/Login"}>Login</Link>
                   </div>
                </form>

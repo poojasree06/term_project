@@ -226,3 +226,8 @@ form .btn-login input[type="submit"]{
   font-weight: 500;
   cursor: pointer;
 }
+
+.coupon-field{
+  text-align: right;
+  color: black;
+}

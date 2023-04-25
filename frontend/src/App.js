@@ -21,6 +21,7 @@ import CouponEdit from './Advertiser/Coupon/CouponEdit';
 import ReturnList from './Customer/Returns/ReturnList';
 import Return from './Seller/Returns/Return';
 import CheckoutForm from './Example/CheckoutForm';
+import CouponList from './Customer/Coupon/CouponList';
 const App = () => {
   return (
             <Router>
@@ -43,7 +44,9 @@ const App = () => {
                   <Route exact path="/:username/:user_id/MyCart" element={<MyCart/>}/>
                   <Route exact path="/:username/:user_id/MyOrders" element={<OrderList/>}/>
                    <Route exact path="/:username/:user_id/MyReturns" element={<ReturnList/>}/>
+                  <Route exact path="/:username/:user_id/:order_id/Payment" element={<Payment/>}/>
                   <Route exact path="/:username/:user_id/:order_id/Tracking" element={<OrderTracking/>}/>
+                   <Route exact path="/:username/:user_id/:order_id/Coupons" element={<CouponList/>}/>
                 </>
                 <>
                   <Route exact path="/:username/:user_id/AdvertiserHome" element={<AdvertiserHome/>}/>
