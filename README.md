@@ -1,4 +1,4 @@
-# E-Commerce Website
+# E-Commerce
 
 
 ## Introduction 
@@ -7,7 +7,7 @@ This is an e-commerce platform that enables sellers to register and list their p
 The platform also includes a dummy bank system, an advertisement interface, 
 item delivery tracking, and a return workflow. The project is built using the MERN stack, which consists of MongoDB, Express.js, React, and Node.js.
 
-## Functionality
+## Functionalities
 **Seller Registration**<br>
 Sellers can register on the platform by providing their details such as name, contact information, and bank account details.
 
@@ -65,31 +65,30 @@ The system provides an advertisement interface where advertisers can register.
 **Discount Coupons**<br>
 Advertisers can add, modify, or delete discount coupons.
 
-OTP Code:
-Upon final arrival, the customer needs to enter an OTP code in the web interface to receive the item.
 
-Payment Interface:
+**Payment Interface**<br>
 A dummy interface is provided for customers to pay for their items.
 
-Dummy Bank System:
-A dummy bank system is provided where customers have their accounts and can modify the balance when making payments or receiving refunds.
 
-Exception Handling:
-The system handles exceptions when the customer's account balance is less than the amount required to make a purchase.
-
-Multiple Bank Accounts:
+**Multiple Bank Accounts**<br>
 Customers can have accounts in multiple banks.
 
-Bank Selection Interface:
+**Bank Selection Interface**<br>
 Customers can select which bank account to use when making payments.
+
+## ER diagram
+
+![Bank](https://user-images.githubusercontent.com/84029615/234367386-7ab6dac3-307d-469d-8d1e-81145189c97d.png)
 
 
 ## Installation
 To install this project, follow these steps:
 <ul>
 <li>Clone this repository onto your local machine.</li>
-<li>Navigate to the project directory.</li>
-<li>Run npm install to install the project's dependencies.</li>
+<li>Navigate to the frontend directory.</li>
+<li>Run `npm install` to install the project's dependencies.</li>
+<li>Navigate to the backend directory.</li>
+<li>Run `npm install` to install the project's dependencies.</li>
 </ul>
 
 ## Usage
@@ -98,10 +97,10 @@ To run this project locally on your machine, follow these steps:
 <li>Open two terminals</li>
 <li>In one terminal</li>
 <li>Navigate to the frontend directory.</li>
-<li>Run npm start to start the development server.</li>
+<li>Run `npm start` to start the development server.</li>
 <li>In second terminal</li>
 <li>Navigate to the backend directory.</li>
-<li>Run node index.js or nodemon index.js ( To install nodemon - npm i nodemon )</li>
+<li>Run `node index.js` or `nodemon index.js` ( To install nodemon - npm i nodemon )</li>
 <li>Open your browser and navigate to localhost:3000 to view the project.</li>
 </ul>
 
