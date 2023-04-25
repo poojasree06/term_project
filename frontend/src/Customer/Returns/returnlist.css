@@ -1,0 +1,15 @@
+.product-list-add{
+  max-width: 800px;
+  width: 700px;
+  margin: 20px auto;
+  background: #FFFFFF;
+  /* box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+  border-radius: 6px; */
+  padding: 20px;
+  text-align: right;
+  border-bottom: black solid 1px;
+}
+.product-list-button{
+    padding: 10px;
+    font-size: 16px;
+}
