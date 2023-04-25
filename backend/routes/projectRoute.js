@@ -142,7 +142,23 @@ router.delete("/delete_cart/:cart_id",(req, res) => {
     });
 })
 
-
+router.patch("/update_cart/:cart_id",(req, res) => {
+  Cart.findOne({_id:req.params.cart_id})   
+   .then((cart) => { 
+      Item.findOne({_id:cart.item_id}).then((item)=>{
+        const price=item.price
+        cart.quantity+=req.body.quantity
+        cart.price=parseFloat(price*cart.quantity)
+        cart.save().then((response)=>{
+            res.status(200).json(response)
+        }).catch((err) => {
+          console.error(err);
+        });
+      })
+    }).catch((err) => {
+        console.error(err);
+    });
+})
 
 
 router.get("/all_items",(req, res) => {
@@ -497,7 +513,26 @@ router.patch("/return_status/:return_id",(req,res)=>{
     )
     .then((updated) => {
       // todo if status == accepted give money back
-    res.status(200).json(updated);
+    if(data.status=="accepted"){
+      Item.findOne({_id:updated.item_id})
+      .then((item)=>{
+        item.returned_quantity+=1
+        item.save()
+        .then((response)=>{
+          console.log("items updated")
+          Order.findOne({_id:updated.order_id})
+          .then((order)=>{
+            Seller.findOne({_id:item.seller_id})
+            .then((seller)=>{
+              seller.amount-=order.bill
+              seller.save();
+            })
+          })
+
+            res.status(200).json(updated);
+        })
+      })
+    }
     })
     .catch((err) => {
     res.status(404).json({ message: "Return not found" });
@@ -579,10 +614,11 @@ router.post('/payments', (req, res) => {
     console.log("payments  started")
     Customer.findOne({ _id: data.customer_id })
         .then((customer) => {
-          console.log(customer.bank_accounts)
+          console.log(customer)
             const account = customer.bank_accounts.find((acc) => {
                 return acc.account_number === data.account_number && acc.bank === data.bank;
             });
+            
             if (account) {
               if(data.discount){
                 const amount=parseFloat(data.amount)-parseFloat(data.amount)*(parseFloat(data.discount)/100)
@@ -597,6 +633,15 @@ router.post('/payments', (req, res) => {
                             Item.findOne({_id:data.item_id})
                             .then((item)=>{
                               item.sold_quantity+=data.quantity
+                              Seller.findOne({_id:item.seller_id}).then((seller)=>{
+                                if(seller.amount){
+                                      seller.amount=(parseFloat(amount))+parseFloat( seller.amount)
+                                }
+                                else{
+                                  seller.amount=parseFloat(amount)
+                                }
+                                seller.save();
+                              })
                               item.save()
                               .then((saved)=>{
                                 console.log("saved");

@@ -41,10 +41,12 @@ export default function SellerHome(props){
                   <div className='product-entry-content'>
                      <p className='order-entry-description'><b>orderID</b></p>
                      <p className='order-entry-description' >{order._id} </p>
-                  </div>
-                  <div className='product-entry-content'>
                      <p className='order-entry-description'><b>Status</b> </p>
                      <p className='order-entry-description'>{order.status} </p>
+                  </div>
+                  <div className='product-entry-content'>
+                     <p className='order-entry-description'><b>Quantity</b> </p>
+                     <p className='order-entry-description'>{order.quantity} </p>
                   </div>
                   <div className='product-buttons'>
                      {order.status=="ordered" ? <button className='order-button' onClick={(e)=>{

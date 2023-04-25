@@ -55,7 +55,7 @@ export default function CartPage(props){
         <div>
             <Header/>
             <div className='cart-page-body'>
-            {cart.map((c, index) => (
+            {cart.length>0? (cart.map((c, index) => (
             <Cart
             key={c._id} 
             cart_id={c._id}
@@ -66,7 +66,7 @@ export default function CartPage(props){
             deleteCart={() => deleteCart(c._id)}
             buyItem={() => buyItem(c._id,c.quantity,c.item_id,c.price)}
              />
-            ))}
+            ))):<h2>No Items in Cart</h2>}
             </div>
         </div>
 

@@ -25,6 +25,7 @@ export default function Order(props){
           const order_id=props.order_id
           const item_id=props.item_id
           const data={order_id,item_id,customer_id:user_id}
+          console.log(data)
           const response = await axios.post(`http://localhost:5000/return_item/${user_id}`,data);
           console.log(response.data)
       };

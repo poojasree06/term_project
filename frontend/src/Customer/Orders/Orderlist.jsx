@@ -32,16 +32,16 @@ export default function OrderList(props){
     return (
     <div>
         <CustomerNav />
-        {products.map((product, index) =>
+        {products.length>0? (products.map((product, index) =>
         product.status !== "returned" ? (
-            <Order
+        <Order
             order_id={product._id}
             item_id={product.item_id}
             tracking={`/${username}/${user_id}/${product._id}/Tracking`}
             getOrders={getOrders}
             />
         ) : null
-        )}
+        )):<h2>No Orders</h2>}
     </div>
     );
 

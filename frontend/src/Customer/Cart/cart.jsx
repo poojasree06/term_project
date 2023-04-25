@@ -9,6 +9,7 @@ import './cart.css'
 export default function Cart(props){
    
    const [item,setItem]=useState({});
+   const [value,setValue]=useState(0);
    const item_id=props.item_id
    const navigate=useNavigate();
    const {username, user_id } = useParams();
@@ -19,6 +20,8 @@ export default function Cart(props){
     const getProduct = async () => {
         const response = await axios.get(`http://localhost:5000/items_by_id/${item_id}`);
         setItem(response.data)
+        setValue(props.quantity)
+        updateCart(value)
         console.log(response.data)
     };
 
@@ -51,6 +54,24 @@ export default function Cart(props){
         console.log(error);
         }
     };
+
+    
+    const updateCart = async (num) => {
+        try {
+         const data={
+            quantity:num
+         }
+         console.log(data)
+         const cart_id=props.cart_id
+        const response=await axios.patch(`http://localhost:5000/update_cart/${cart_id}`,data);
+        console.log(response)
+        if(response.data.quantity==0){
+              deleteCart();
+        }
+        } catch (error) {
+        console.log(error);
+        }
+    };
             
     return(
       <div className='cart-body'>
@@ -64,9 +85,15 @@ export default function Cart(props){
                <p className='cart-description'>{item.description}</p>
             </div>
             <div className='quantity'>
-            <img className='cart-icons'src={minus} />
+            <img className='cart-icons'src={minus} onClick={(e)=>{
+               e.preventDefault();
+               updateCart(-1)
+            }} />
             <p>{props.quantity}</p>
-            <img className='cart-icons' src={plus} />
+            <img className='cart-icons' src={plus} onClick={(e)=>{
+               e.preventDefault();
+               updateCart(1)
+            }}/>
             </div>
             <div className='cart-buttons'>
                <h3 className='cart-price'>${props.price}</h3>

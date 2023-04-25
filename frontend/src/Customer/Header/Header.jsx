@@ -21,7 +21,7 @@ function CustomerNav() {
             navbarScroll
           >
             <Nav.Link href={`/${username}/${user_id}/CustomerHome`}>Home</Nav.Link>
-            <Nav.Link href={`/${username}/${user_id}/DisplayItems`}  >Products</Nav.Link>
+            {/* <Nav.Link href={`/${username}/${user_id}/DisplayItems`}  >Products</Nav.Link> */}
             <Nav.Link href={`/${username}/${user_id}/MyCart`}>Cart</Nav.Link>
             <Nav.Link href={`/${username}/${user_id}/MyOrders`}>Orders</Nav.Link>
             <Nav.Link href={`/${username}/${user_id}/MyReturns`}>Returns</Nav.Link>
@@ -29,7 +29,7 @@ function CustomerNav() {
           <Nav>
             <Nav.Link href="#action2">Profile</Nav.Link>
           </Nav>
-        <Button variant="outline-success">Sign in</Button>
+         <Link to={"/Login"}><Button variant="outline-success" >Sign Out</Button></Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>

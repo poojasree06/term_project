@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate,useParams } from "react-router-dom";
+import { Link, useNavigate,useParams } from "react-router-dom";
 import Header from '../Header/Header';
 import './tracking.css'
 
@@ -53,7 +53,7 @@ export default function OrderTracking(props){
                         <span id="price">${iteminfo.bill}</span>
                     </div>
                     {iteminfo.discount ? 
-                    <div>
+                    <div class="row">
                         <div class="col-9">
                             <span id="name">Total Amount</span>  
                         </div>
@@ -74,21 +74,22 @@ export default function OrderTracking(props){
             </div>
             <div class="order-total">
                 <div class="row">
+                     {iteminfo.discount ? 
+                     <div>
                     <div class="col-9">Total bill</div>
                     <div class="col-3"><big>&pound;{parseFloat(iteminfo.bill)-(parseFloat(iteminfo.discount)*parseFloat(iteminfo.bill))/100}</big></div>
+                    </div>:  <div class="row">
+                    <div class="col-9">Total bill</div>
+                    <div class="col-3"><big>&pound;{iteminfo.bill}</big></div>
+                    </div>
+
+                     }
                 </div>
             </div>
-            <div class="order-tracking">
-                <div class="order-title">Tracking Order</div>
-            </div>
-            <div class="progress-track">
-                <ul id="progressbar">
-                    <li class="step0 active " id="step1">Ordered</li>
-                    <li class="step0 active text-center" id="step2">Shipped</li>
-                    <li class="step0 active  text-right" id="step3">On the way</li>
-                    <li class="step0  text-right" id="step4">Delivered</li>
-                </ul>
-            </div>
+            {/* <div class="order-tracking">
+                <Link to={`././MyOrders`}> <div class="order-title">Go To Orders</div></Link>
+               
+            </div> */}
         </div>
          </div>
     </div>

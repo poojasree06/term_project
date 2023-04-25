@@ -13,7 +13,7 @@ export default function CouponCard(props){
             </div>
             <div className='coupon-entry-content'>
                 <p className='coupon-entry-description'>{props.name}</p>
-                <p className='coupon-entry-description'>{props.discount}</p>
+                <p className='coupon-entry-description'>{props.discount}%</p>
                 <p className='coupon-entry-description'>{props.date}</p>
             </div>
             <div className='coupon-buttons'>

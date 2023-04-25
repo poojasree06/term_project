@@ -31,7 +31,7 @@ export default function ReturnList(props){
     return(
     <div>
         <CustomerNav/>
-            {returns.map(( returnItem, index) => (
+            {returns.length>0? (returns.map(( returnItem, index) => (
             <Return 
             return_id={returnItem._id} 
             date={returnItem.returned_at}
@@ -40,7 +40,7 @@ export default function ReturnList(props){
             order_id={returnItem.order_id}
             customer_id={returnItem.customer_id}
              />
-            ))}
+            ))):<h2>No Returns</h2>}
     </div>       
     );
 }

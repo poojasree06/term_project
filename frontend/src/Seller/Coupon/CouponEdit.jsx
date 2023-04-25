@@ -59,7 +59,7 @@ export default function CouponEdit(props){
                     <input type="text" name="name"  placeholder="Coupon Name" value={formData.name} onChange={handleFormChange}/>
                   </div>
                   <div class="field ">
-                    <input type="text" name="discount"  placeholder="Discount" value={formData.discount} onChange={handleFormChange}/>
+                    <input type="text" name="discount"  placeholder="Discount %" value={formData.discount} onChange={handleFormChange}/>
                   </div>
                    <div style={{marginTop:"9px",marginBottom:"9px",fontSize:"18px"}}>
                     <b>Validity Date</b>

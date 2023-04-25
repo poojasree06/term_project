@@ -5,7 +5,7 @@ const mongoose=require('mongoose')
 const handlePayment = require('./payment');
 const router=require('./routes/projectRoute.js')
 
-mongoose.connect('mongodb://localhost:27017/test_project', {
+mongoose.connect('mongodb://localhost:27017/e_commerce', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {

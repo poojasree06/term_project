@@ -19,8 +19,9 @@ function SellerNav() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href={`/${username}/${user_id}/SellerHome`}>Home</Nav.Link>
+            <Nav.Link href={`/${username}/${user_id}/SellerHome`}>Orders</Nav.Link>
             <Nav.Link href={`/${username}/${user_id}/Items`}>Items</Nav.Link>
+             <Nav.Link href={`/${username}/${user_id}/Coupons`}>Coupons</Nav.Link>
             <Nav.Link href={`/${username}/${user_id}/Returned_items`}>Returned Items</Nav.Link>
             <Nav.Link href={`/${username}/${user_id}/Dashboard`}>Dashboard</Nav.Link>
             <Nav.Link href={`/${username}/${user_id}/Reviews`}>Reviews</Nav.Link>
@@ -28,7 +29,8 @@ function SellerNav() {
           <Nav>
             <Nav.Link href="#action2">Profile</Nav.Link>
           </Nav>
-        <Button variant="outline-success">Sign in</Button>
+          <Link to={"/Login"}>     <Button variant="outline-success" >Sign Out</Button></Link>
+   
         </Navbar.Collapse>
       </Container>
     </Navbar>

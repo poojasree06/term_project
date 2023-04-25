@@ -20,7 +20,7 @@ export default function Return(props){
     const updateStatus = async (return_id,val) => {
        const data={status:val,user_id:user_id}
         const response = await axios.patch(`http://localhost:5000/return_status/${return_id}`,data);
-        console.log(response.data.returns)
+        console.log(response.data)
     };
 
     return(
@@ -35,6 +35,8 @@ export default function Return(props){
                      <p className='order-entry-description' >{returnItem._id} </p>
                   </div>
                   <div className='product-entry-content'>
+                     <p className='order-entry-description'><b>Quantity</b> </p>
+                     <p className='order-entry-description'>{returnItem.quantity} </p>
                      <p className='order-entry-description'><b>Status</b> </p>
                      <p className='order-entry-description'>{returnItem.status} </p>
                   </div>

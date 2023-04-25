@@ -8,7 +8,7 @@ export default function Return(props){
 
     const [iteminfo, setIteminfo] = useState([]);
     const {username,user_id} = useParams();
-
+    const navigate=useNavigate()
       useEffect(() => {
           getItems();
       }, []);
@@ -44,7 +44,10 @@ export default function Return(props){
               <p className='product-entry-description'>{new Date(props.date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric'})}</p>
               <p className='product-entry-description'>{iteminfo.item_name}</p>
                <p className='product-entry-description'><b>Quantity :</b> {iteminfo.quantity}</p>
-               {props.status=="rejected"  ? <button>File Complaint</button>: <p className='product-entry-description'>{props.status}</p>
+               {props.status=="rejected"  ? <button onClick={(e)=>{
+                e.preventDefault();
+                navigate(`./Complaint`)
+               }}>File Complaint</button> : <p className='product-entry-description'>{props.status}</p>
               }
               
             </div>

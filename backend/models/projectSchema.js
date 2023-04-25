@@ -31,7 +31,7 @@ const OrderSchema=new Schema({
     quantity:{type:Number,default:1},
     bill:{type:String,required:true},
     ordered_at:{type:Date,default:Date.now},
-    otp:{type:String,required:true},
+    otp:{type:String},
     status:{type:String,required:true,default:"ordered"} ,
     coupon_code:{type:String},
     discount:{type:String}
@@ -39,7 +39,7 @@ const OrderSchema=new Schema({
 
 const CustomerSchema=new Schema({
     name:{type:String,required:true},
-    phone:{type:Number,required:true,unique:true},
+    phone:{type:String,required:true,unique:true},
     email:{type:String,required:true,unique:true},
     password:{type:String,required:true},
     bank_accounts: [AccountSchema],
@@ -54,6 +54,7 @@ const SellerSchema=new Schema({
     email:{type:String,required:true,unique:true},
     password:{type:String,required:true},
     registered_at:{type:Date,default:Date.now},
+    amount:{type:String}
 })
 
 const ItemSchema=new Schema({
@@ -65,6 +66,7 @@ const ItemSchema=new Schema({
     quantity_added:{type:Number,default:1,required:true},
     sold_quantity:{type:Number,default:0},
     returned_quantity:{type:Number,default:0},
+
 })
 
 
