@@ -82,3 +82,27 @@ Customers can have accounts in multiple banks.
 
 Bank Selection Interface:
 Customers can select which bank account to use when making payments.
+
+
+## Installation
+To install this project, follow these steps:
+<ul>
+<li>Clone this repository onto your local machine.</li>
+<li>Navigate to the project directory.</li>
+<li>Run npm install to install the project's dependencies.</li>
+</ul>
+
+## Usage
+To run this project locally on your machine, follow these steps:
+<ul>
+<li>Open two terminals</li>
+<li>In one terminal</li>
+<li>Navigate to the frontend directory.</li>
+<li>Run npm start to start the development server.</li>
+<li>In second terminal</li>
+<li>Navigate to the backend directory.</li>
+<li>Run node index.js or nodemon index.js ( To install nodemon - npm i nodemon )</li>
+<li>Open your browser and navigate to localhost:3000 to view the project.</li>
+</ul>
+
+
